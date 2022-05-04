@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+buy_me
+{% endblock %}
+
+{% block title %}
+buy_me
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-3">
+            <div class="card border-primary mb-3 mt-6" style="max-width: 18rem; margin-top:150px;">
+              <div class="card-header">buy_me</div>
+              <div class="card-body text-primary">
+                <h5 class="card-title"></h5>
+                <p class="card-text"><strong><i>buy_me</i></strong> is an online platform for selling and buying vehicles. Here we're providing all types of vehicles(electrical,petrol, diesel) and  used cars also. Use me well. </p>
+              </div>
+            </div>
+        </div>
+        <div class="col-6 ">
+<!--            <img src="{% static 'img/buy_me_logo.png' %}">-->
+            <div class="card border-primary mb-3 mt-6 scroll" style="max-width: 50rem; margin-top:100px;">
+              <div class="card-body text-primary">
+                  {% for vehi in vehicle %}
+                  <form action="" method="post">
+                      {% csrf_token %}
+                  <div class="card my_table">
+                      <div class="card-body ">
+                          <table class="my_table">
+                              <thead style="color:#000000; ">{{vehi.v_name}}</thead>
+                              <tr >
+                                <td><img src="{{vehi.v_img.url}}" width="300px" height="150px"></td>
+                                  <td rowspan="1">
+                                      Vehicle type : {{vehi}}<br>
+                                      Tank type : {{vehi.get_t_type_display}}<br>
+                                      Price : {{vehi.price}}rs<br>
+                                      Date : {{vehi.published}}</td>
+                                        {{vehi.id}}
+                              </tr>
+
+                          </table>
+                          {% if user.is_authenticated %}
+                            <a type="submit" href="{% url 'product_app:detail' vehi.id %}" class="btn btn-primary" style="margin-left:400px;">Details</a>
+                          {% endif %}
+                      </div>
+                  </div>
+                  </form>
+                  {% endfor %}
+              </div>
+            </div>
+        </div>
+        <div class="col-3 log ">
+
+            <div class="card border-primary mb-3 mb-3 mt-3" style="max-width: 18rem;">
+              <div class="card-header">Login</div>
+              <div class="card-body">
+                {% if user.is_authenticated %}
+                  <img src="{{user.userprofile.image.url}}" width="200px" class="rounded">
+                <h5 class="card-title">{{user}}</h5>
+                  <p>{{user.userprofile.bio}}</p>
+                  <a href="/logout">logout</a>
+                  {% else %}
+                    <form method="post" action="{% url 'vehicle_app:log' %}" class="">
+                        {% csrf_token %}
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label"></label>
+                        <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" name="psw" class="form-control" id="exampleInputPassword1">
+                      </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+                            <a href="{% url 'vehicle_app:reg' %}" style="font-size:20px;">Register</a>
+                    </form>
+                  {% endif %}
+              </div>
+            </div>
+
+        </div>
+        </div>
+{% endblock %}

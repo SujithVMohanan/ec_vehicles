@@ -1,0 +1,63 @@
+body{
+    overflow:scroll;
+}
+
+
+.logo_img{
+    margin-left:200px;
+
+}
+
+/** navbar **/
+
+.nav-text{
+    font-family: cursive;
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.drop{
+}
+.drop a:hover{
+    background-color: #bfd3f2;
+}
+
+/** login **/
+
+.log {
+    margin-top:140px;
+    margin-bottom:50px;
+    color:#0e7ae6;
+}
+
+
+/** scrollbar **/
+.scroll {
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+
+.my_table{
+    color:#000000;
+    font-size:12px;
+    font-family:cursive;
+    font-style:italic;
+}
+/** register **/
+.my_card{
+    margin-top:10px;
+    width : 18rem;
+    font-family:cursive;
+    font-style:italic;
+}
+
+
+/** footer **/
+.my-footer{
+    margin-top:150px;
+    margin-bottom:0px;
+    color:white;
+}
+
+

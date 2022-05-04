@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block metadescription %}
+details
+{% endblock %}
+
+{% block title %}
+{{vehicle.v_name}} details
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div>
+        <div class="card border-primary"  style="margin-top:100px; width:700px;">
+            <div class="card-body ">
+                <form method="post">
+                    {% csrf_token %}
+                <h1 class="text-primary">{{vehicle.v_name}}</h1>
+                <p>{{vehicle.desc}}</p>
+                <img src="{{vehicle.v_img.url}}" width="500px" height="200px">
+                <p>Price : {{vehicle.price}}</p>
+                {% if vehicle.available is True %}
+                <p>Available : Yes</p>
+                {% else %}
+                <p>Available : No</p>
+                {% endif %}
+                <a type="submit" href="{% url 'cart_app:addcart' vehicle.id %}" class="btn btn-primary">Add to cart</a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

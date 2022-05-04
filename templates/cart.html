@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block metadescription %}
+cart
+{% endblock %}
+
+{% block title %}
+cart
+{% endblock %}
+
+{% block content %}
+<div class="row " style="margin-top:100px;">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+    <table class="table my_custom_table">
+      <thead class="my_custom_thead">
+        <tr>
+          <th colspan="5">Your items</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for it in item %}
+      <tr>
+        <td>
+          <a href=""><img src="{{it.item.v_img.url}}" alt="" class="float-left rounded custom_image" style="width:120px; height:100px;"></a>
+        </td>
+        <td class="text-left">{{it.item.v_name}}<br>
+          Price:{{it.item.price}}rs<br>
+        </td>
+        <td>
+        <td>
+          &nbsp;
+<!--          <a href="" class="custom_a"><i href="" class="fa fa-minus custom_a"></i></a>-->
+          &nbsp;
+          <a href="{% url 'cart_app:remove_cart' it.id %}" class="custom_a"><i href="custom_icon" class="fa fa-trash custom_icon"></i></a>
+
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+      <table class="table my_custom_table">
+        <thead class="my_custom_thead">
+          <tr>
+            <th>
+              Checkout
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              PLease review your shopping cart items before proceeding with the order payment.
+            </td>
+          </tr>
+        <tr>
+          <td class="text-left">
+              Your total is : <strong>{{total}}</strong>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    <div class="ma-auto">
+      <a href="/" class="btn btn-secondary btn-block my_custom_button">Continue Shopping</a>
+      &nbsp;<a href="" class="btn btn-success btn-block my_custom_button">Payment</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
